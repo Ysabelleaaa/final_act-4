@@ -5,20 +5,27 @@
 <h2>Voting Eligibility</h2>
 
 <form method="post">
-    Enter a year: <input type="number" name="yr" required> <br><br>
+    Enter your age: <input type="number" name="age" required> <br><br>
+    Enter your citizenship: <input type="text" name="ctz" required> <br><br>
     <input type="submit" value="Submit"> <br><br>
 </form>
-
 
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$yr = $_POST["yr"];
+$age = $_POST["age"];
+$ctz = $_POST["ctz"];
 
-if(($yr % 400 == 0) || ($yr % 4 == 0 && $yr % 100 != 0)) {
-    echo "Leap Year";
+if($age >= 18) {
+
+if(strtoupper($ctz) == "FILIPINO") {
+    echo "Eligible to vote";
 } else {
-    echo "Not a Leap Year";
+    echo "Not eligible: must be Filipino";
+}
+} else {
+    echo "Not eligible: must be 18 and above";
+
 }
 }
 ?>
